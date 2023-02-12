@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -18,13 +19,9 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    UserService userService;
 
-    @PostMapping
-    public ResponseEntity<User> saveUser(@Valid @RequestBody User user){
-        User usernew = userService.save(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(usernew);
-    }
+
     @GetMapping("/{id}")
     public ResponseEntity<List<User>> getAllUser(@PathVariable(value = "id") int id){
         User user = userService.findById(id);

@@ -7,10 +7,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Repository
-public interface TaskRepository extends JpaRepository<Task,Integer> {
+public interface TaskRepository extends JpaRepository<Task, Integer> {
 
-    @Query("SELECT u FROM task u WHERE u.data = ?1")
-    List<Task> findTaskByData(Date data);
+    Optional<List<Task>> findByData(Date data);
 }
