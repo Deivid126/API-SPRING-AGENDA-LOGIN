@@ -38,4 +38,11 @@ public class TaskService {
         return taskRepository.findByData(data).get();
     }
 
+    public void deleteTask(int id) {
+        taskRepository.deleteById(id);
+    }
+    public List<Task> findBeteweenDate(Date startdate, Date enddate){
+        return taskRepository.findBetweenDate(startdate,enddate);
+    }
+
 }

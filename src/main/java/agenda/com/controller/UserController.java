@@ -23,7 +23,7 @@ public class UserController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<List<User>> getAllUser(@PathVariable(value = "id") int id){
+    public ResponseEntity<List<User>> getUser(@PathVariable(value = "id") int id){
         User user = userService.findById(id);
         return ResponseEntity.status(HttpStatus.OK).body(Collections.singletonList(user));
     }
