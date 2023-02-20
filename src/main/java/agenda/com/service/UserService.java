@@ -25,9 +25,9 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public User findById(int id){
+    public Optional<User> findById(int id){
         Optional<User> user = userRepository.findById(id);
-        return user.get();
+        return user;
     }
     public User uptade(User user, int  id){
         Optional<User> usernew = userRepository.findById(id);

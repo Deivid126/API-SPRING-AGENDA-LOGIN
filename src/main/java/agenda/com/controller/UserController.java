@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -24,8 +25,8 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<List<User>> getUser(@PathVariable(value = "id") int id){
-        User user = userService.findById(id);
-        return ResponseEntity.status(HttpStatus.OK).body(Collections.singletonList(user));
+        Optional<User> user = userService.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(Collections.singletonList(user.get()));
     }
 
 

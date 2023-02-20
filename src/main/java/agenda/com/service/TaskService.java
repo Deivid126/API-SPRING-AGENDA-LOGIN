@@ -22,8 +22,8 @@ public class TaskService {
 
 
     public Task CreateTask(Task task, int id){
-        User user = userService.findById(id);
-        task.setUser(user);
+        Optional<User> user = userService.findById(id);
+        task.setUser(user.get());
         return taskRepository.save(task);
     }
     public Task uptadeTask(Task task, int id){
