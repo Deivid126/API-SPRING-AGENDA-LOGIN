@@ -16,9 +16,9 @@ import java.util.UUID;
 public class TaskService {
 
     @Autowired
-    TaskRepository taskRepository;
+    private TaskRepository taskRepository;
     @Autowired
-    UserService userService;
+    private UserService userService;
 
 
     public Task CreateTask(Task task, int id){
@@ -35,7 +35,7 @@ public class TaskService {
         return taskRepository.findAll();
     }
     public List<Task> findByDate(Date data){
-        return taskRepository.findByData(data).get();
+        return taskRepository.findByData(data);
     }
 
     public void deleteTask(int id) {

@@ -13,8 +13,8 @@ import java.util.UUID;
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Integer> {
 
-    Optional<List<Task>> findByData(Date data);
+    List<Task> findByData(Date data);
 
-    @Query("FROM Task WHERE data BETWEEN ?1 AND ?2")
-    List<Task> findBetweenDate(Date stardate, Date enddate);
+    List<Task> findBetweenDate(Date startdate, Date enddate);
+
 }

@@ -23,7 +23,7 @@ import java.util.UUID;
 public class UserService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     public Optional<User> findById(int id){
         Optional<User> user = userRepository.findById(id);
