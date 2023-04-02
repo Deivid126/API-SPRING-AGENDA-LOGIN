@@ -37,6 +37,10 @@ public class Task implements Serializable{
     @Column(nullable = false,name = "descricao")
     private String descricao;
     @NotNull
+    @Column(nullable = false, name = "typetask")
+    @Enumerated(EnumType.STRING)
+    private  TypeTask typeTask;
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "user")
     @JsonBackReference
