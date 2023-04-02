@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.UUID;
 
 
 @Data
@@ -22,8 +23,7 @@ import java.util.Date;
 public class Task implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private UUID Id;
     @NotNull
     @Column(nullable = false,name = "data")
     private Date data;
@@ -38,7 +38,7 @@ public class Task implements Serializable{
     private String descricao;
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user")
     @JsonBackReference
     private User user;
 

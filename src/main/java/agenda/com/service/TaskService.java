@@ -21,12 +21,13 @@ public class TaskService {
     private UserService userService;
 
 
-    public Task CreateTask(Task task, int id){
+    public Task CreateTask(Task task, UUID id){
         Optional<User> user = userService.findById(id);
         task.setUser(user.get());
+        task.setId(UUID.randomUUID());
         return taskRepository.save(task);
     }
-    public Task uptadeTask(Task task, int id){
+    public Task uptadeTask(Task task, UUID id){
         Optional<Task> tasknew = taskRepository.findById(id);
         BeanUtils.copyProperties(task, tasknew, "user");
         return taskRepository.save(tasknew.get());
@@ -38,11 +39,11 @@ public class TaskService {
         return taskRepository.findByData(data);
     }
 
-    public void deleteTask(int id) {
+    public void deleteTask(UUID id) {
         taskRepository.deleteById(id);
     }
     public List<Task> findBeteweenDate(Date startdate, Date enddate){
-        return taskRepository.findBetweenDate(startdate,enddate);
+        return taskRepository.findByDataBetween(startdate,enddate);
     }
 
 }

@@ -11,16 +11,17 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class WebSecurityConfig{
 
-    @Autowired
-    JwtRequestFilter jwtAuthFilter;
-    @Autowired
-    AuthenticationProvider authenticationProvider;
+
+    private final JwtRequestFilter jwtAuthFilter;
+
+    private final AuthenticationProvider authenticationProvider;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -40,6 +41,4 @@ public class WebSecurityConfig{
 
         return http.build();
     }
-
-
 }

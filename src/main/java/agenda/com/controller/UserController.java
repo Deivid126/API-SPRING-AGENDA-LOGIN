@@ -24,9 +24,15 @@ public class UserController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<List<User>> getUser(@PathVariable(value = "id") int id){
+    public ResponseEntity<User> getUser(@PathVariable(value = "id") UUID id){
         Optional<User> user = userService.findById(id);
-        return ResponseEntity.status(HttpStatus.OK).body(Collections.singletonList(user.get()));
+        return ResponseEntity.status(HttpStatus.OK).body((user.get()));
+    }
+    @GetMapping
+    public ResponseEntity<List<User>> getAllUser()
+    {
+        List<User> list = userService.findAll();
+        return ResponseEntity.status(HttpStatus.OK).body(list);
     }
 
 

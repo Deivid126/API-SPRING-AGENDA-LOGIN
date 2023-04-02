@@ -17,6 +17,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 
 @Data
@@ -29,8 +30,7 @@ public class User implements UserDetails, Serializable {
 
     private static final long serialVersionUID = 5926468583455150707L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private UUID Id;
     @NotNull
     @Column(nullable = false,name = "email")
     private String email;

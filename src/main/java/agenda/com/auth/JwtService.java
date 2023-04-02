@@ -10,6 +10,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class JwtService {
 
@@ -24,6 +26,7 @@ public class JwtService {
     AuthenticationManager authenticationManager;
     public JwtResponse register(JwtRequest request) {
         var user = User.builder()
+                .Id(UUID.randomUUID())
                 .nome(request.getNome())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))

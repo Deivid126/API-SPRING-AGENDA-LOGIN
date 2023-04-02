@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -21,7 +22,7 @@ public class TaskController {
     TaskService taskService;
 
     @PostMapping("/{id}")
-    public ResponseEntity<Task> saveTask(@PathVariable(value = "id") int id, @RequestBody Task task){
+    public ResponseEntity<Task> saveTask(@PathVariable(value = "id") UUID id, @RequestBody Task task){
         Task tasknew = taskService.CreateTask(task,id);
         return ResponseEntity.status(HttpStatus.CREATED).body(tasknew);
     }
@@ -35,11 +36,12 @@ public class TaskController {
         return ResponseEntity.status(HttpStatus.OK).body(taskService.findByDate(date1));
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Task> putTask(@PathVariable(value = "id") int id, @RequestBody Task task){
+    public ResponseEntity<Task> putTask(@PathVariable(value = "id") UUID id, @RequestBody Task task){
         return ResponseEntity.status(HttpStatus.OK).body(taskService.uptadeTask(task,id));
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteTask(@PathVariable(value = "id") int id){
+    public ResponseEntity deleteTask(@PathVariable(value = "id") UUID id){
+        taskService.deleteTask(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Task Removida");
     }
     @GetMapping("/data-beteween/{stardate}/{enddate}")

@@ -12,10 +12,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -34,27 +31,29 @@ public class TaskServiceTest {
 
     @Test
     public void testCreateTask() {
+        UUID id = UUID.randomUUID();
         Task task = new Task();
         User user = new User();
-        user.setId(1);
-        when(userService.findById(1)).thenReturn(Optional.of(user));
+        user.setId(id);
+        when(userService.findById(id)).thenReturn(Optional.of(user));
         when(taskRepository.save(task)).thenReturn(task);
-        Task savedTask = taskService.CreateTask(task, 1);
+        Task savedTask = taskService.CreateTask(task, id);
         verify(taskRepository).save(task);
         assertEquals(user, savedTask.getUser());
     }
 
     @Test
     public void testUpdateTask() {
+        UUID id = UUID.randomUUID();
         Task oldTask = new Task();
-        oldTask.setId(1);
+        oldTask.setId(id);
         oldTask.setDescricao("old description");
         Task newTask = new Task();
-        newTask.setId(1);
+        newTask.setId(id);
         newTask.setDescricao("new description");
-        when(taskRepository.findById(1)).thenReturn(Optional.of(oldTask));
+        when(taskRepository.findById(id)).thenReturn(Optional.of(oldTask));
         when(taskRepository.save(oldTask)).thenReturn(newTask);
-        Task updatedTask = taskService.uptadeTask(newTask, 1);
+        Task updatedTask = taskService.uptadeTask(newTask, id);
         verify(taskRepository).save(oldTask);
         assertEquals("new description", updatedTask.getDescricao());
     }
@@ -83,7 +82,7 @@ public class TaskServiceTest {
 
     @Test
     public void testDeleteTask() {
-        int id = 1;
+        UUID id = UUID.randomUUID();
         doNothing().when(taskRepository).deleteById(id);
         taskService.deleteTask(id);
         verify(taskRepository).deleteById(id);
@@ -96,9 +95,9 @@ public class TaskServiceTest {
         Date startDate = new Date(2022, 1, 1);
         Date endDate = new Date(2022, 12, 31);
         List<Task> tasks = Arrays.asList(task1, task2);
-        when(taskRepository.findBetweenDate(startDate, endDate)).thenReturn(tasks);
+        when(taskRepository.findByDataBetween(startDate, endDate)).thenReturn(tasks);
         List<Task> foundTasks = taskService.findBeteweenDate(startDate, endDate);
-        verify(taskRepository).findBetweenDate(startDate, endDate);
+        verify(taskRepository).findByDataBetween(startDate, endDate);
         assertEquals(2, foundTasks.size());
     }
 

@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -25,17 +26,21 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public Optional<User> findById(int id){
+    public Optional<User> findById(UUID id){
         Optional<User> user = userRepository.findById(id);
         return user;
     }
-    public User uptade(User user, int  id){
+    public List<User> findAll()
+    {
+        return userRepository.findAll();
+    }
+    public User uptade(User user, UUID  id){
         Optional<User> usernew = userRepository.findById(id);
 
         BeanUtils.copyProperties(user,usernew);
         return userRepository.save(usernew.get());
     }
-    public void deleteUser(int  id){
+    public void deleteUser(UUID  id){
         userRepository.deleteById(id);
     }
     public User findByEmail(String email){
