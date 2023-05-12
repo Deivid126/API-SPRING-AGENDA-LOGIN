@@ -1,4 +1,4 @@
-package agenda.com.model;
+package agenda.com.enums;
 
 public enum Role {
 

@@ -1,5 +1,7 @@
 package agenda.com.model;
 
+import agenda.com.enums.CategoryofTasks;
+import agenda.com.enums.TypeTask;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -39,7 +41,11 @@ public class Task implements Serializable{
     @NotNull
     @Column(nullable = false, name = "typetask")
     @Enumerated(EnumType.STRING)
-    private  TypeTask typeTask;
+    private TypeTask typeTask;
+    @Column(nullable = false, name = "categoria")
+    @Enumerated(EnumType.STRING)
+    private CategoryofTasks category;
+
     @NotNull
     @ManyToOne
     @JoinColumn(name = "user")

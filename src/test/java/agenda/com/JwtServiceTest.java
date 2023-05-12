@@ -4,8 +4,7 @@ import agenda.com.auth.JwtRequest;
 import agenda.com.auth.JwtResponse;
 import agenda.com.auth.JwtService;
 import agenda.com.config.JwtTokenUtil;
-import agenda.com.model.Role;
-import agenda.com.model.Task;
+import agenda.com.enums.Role;
 import agenda.com.model.User;
 import agenda.com.repository.UserRepository;
 import org.junit.Test;
@@ -15,7 +14,6 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;

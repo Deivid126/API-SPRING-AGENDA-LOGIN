@@ -1,19 +1,9 @@
 package agenda.com.service;
 
-import agenda.com.config.JwtTokenUtil;
-import agenda.com.auth.JwtRequest;
-import agenda.com.auth.JwtResponse;
-import agenda.com.model.Role;
 import agenda.com.model.User;
 import agenda.com.repository.UserRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

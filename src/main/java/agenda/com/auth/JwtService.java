@@ -1,7 +1,7 @@
 package agenda.com.auth;
 
 import agenda.com.config.JwtTokenUtil;
-import agenda.com.model.Role;
+import agenda.com.enums.Role;
 import agenda.com.model.User;
 import agenda.com.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
